@@ -31,7 +31,8 @@ Dump 日志分析
 1. 将抓取到的日志拉取到本地中
 2. 使用例子中提供的 `tools/mac/minidump_stackwalker` 工具来根据 minidump 文件生成堆栈跟踪log
 ```
-	 ./tools/mac/minidump_stackwalk crashDump/***.dmp >crashLog.txt 
+	 ./tools/mac/minidump_stackwalk crashDump/***.dmp >crashLog.txt
+	  ./tools/mac/minidump_stackwalk crashDump/241f05a4-2faf-447b-70f5bd96-fbd574e0.dmp >crashLog.txt
 ```
 	 
 3. 打开文件后可以看到一个详细的 crash 日志，如下
@@ -104,6 +105,8 @@ Thread 0 (crashed)//crash 发生时候的线程
 `$NDK_HOME/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-addr2line`
  
  注意：此处要注意一下平台，如果是 arm64位的 so，解析是需要使用 `aarch64-linux-android-4.9`下的工具链
+
+  tools/mac/aarch64-linux-android-addr2line -f -C -e sample/build/intermediates/transforms/mergeJniLibs/debug/0/lib/arm64-v8a/libcrash-lib.so 0x650
 ```
 arm-linux-androideabi-addr2line -f -C -e sample/build/intermediates/transforms/mergeJniLibs/debug/0/lib/armeabi-v7a/libcrash-lib.so 0x77e                           
 //输出结果如下
